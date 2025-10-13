@@ -1,0 +1,14 @@
+/home/Shiro_845/RiderProjects/Pizzeria/Pizzeria/bin/Debug/net9.0/Pizzeria
+/home/Shiro_845/RiderProjects/Pizzeria/Pizzeria/bin/Debug/net9.0/Pizzeria.deps.json
+/home/Shiro_845/RiderProjects/Pizzeria/Pizzeria/bin/Debug/net9.0/Pizzeria.runtimeconfig.json
+/home/Shiro_845/RiderProjects/Pizzeria/Pizzeria/bin/Debug/net9.0/Pizzeria.dll
+/home/Shiro_845/RiderProjects/Pizzeria/Pizzeria/bin/Debug/net9.0/Pizzeria.pdb
+/home/Shiro_845/RiderProjects/Pizzeria/Pizzeria/obj/Debug/net9.0/Pizzeria.GeneratedMSBuildEditorConfig.editorconfig
+/home/Shiro_845/RiderProjects/Pizzeria/Pizzeria/obj/Debug/net9.0/Pizzeria.AssemblyInfoInputs.cache
+/home/Shiro_845/RiderProjects/Pizzeria/Pizzeria/obj/Debug/net9.0/Pizzeria.AssemblyInfo.cs
+/home/Shiro_845/RiderProjects/Pizzeria/Pizzeria/obj/Debug/net9.0/Pizzeria.csproj.CoreCompileInputs.cache
+/home/Shiro_845/RiderProjects/Pizzeria/Pizzeria/obj/Debug/net9.0/Pizzeria.dll
+/home/Shiro_845/RiderProjects/Pizzeria/Pizzeria/obj/Debug/net9.0/refint/Pizzeria.dll
+/home/Shiro_845/RiderProjects/Pizzeria/Pizzeria/obj/Debug/net9.0/Pizzeria.pdb
+/home/Shiro_845/RiderProjects/Pizzeria/Pizzeria/obj/Debug/net9.0/Pizzeria.genruntimeconfig.cache
+/home/Shiro_845/RiderProjects/Pizzeria/Pizzeria/obj/Debug/net9.0/ref/Pizzeria.dll
