@@ -8,19 +8,19 @@
     "net9.0": []
   },
   "packageFolders": {
-    "/home/Shiro_845/.nuget/packages/": {}
+    "/home/shiro_845/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/Shiro_845/RiderProjects/Pizzeria/Pizzeria/Pizzeria.csproj",
+      "projectUniqueName": "/home/shiro_845/RiderProjects/Lab2_Pizzeria/Pizzeria.csproj",
       "projectName": "Pizzeria",
-      "projectPath": "/home/Shiro_845/RiderProjects/Pizzeria/Pizzeria/Pizzeria.csproj",
-      "packagesPath": "/home/Shiro_845/.nuget/packages/",
-      "outputPath": "/home/Shiro_845/RiderProjects/Pizzeria/Pizzeria/obj/",
+      "projectPath": "/home/shiro_845/RiderProjects/Lab2_Pizzeria/Pizzeria.csproj",
+      "packagesPath": "/home/shiro_845/.nuget/packages/",
+      "outputPath": "/home/shiro_845/RiderProjects/Lab2_Pizzeria/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/Shiro_845/.nuget/NuGet/NuGet.Config"
+        "/home/shiro_845/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -65,7 +65,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/home/Shiro_845/.dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/home/shiro_845/.dotnet/sdk/9.0.306/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
