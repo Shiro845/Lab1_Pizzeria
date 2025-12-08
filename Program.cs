@@ -1,10 +1,9 @@
 ﻿namespace Pizzeria;
-
-class App
+class Program
 {
     public static string login = "viktor";
     public static string password = "12345678";
-    public static Pizza[] Pizzas =
+    public static List<Pizza> Pizzas = new List<Pizza>
     {
         new Pizza("Піца Маргарита", 230, 0.4, 920),
         new Pizza("Піца Салямі", 180, 0.35, 980),
@@ -16,6 +15,138 @@ class App
     static string _orders = "";
     static int _code;
     public static bool verify = false;
+
+    public static void Sort()
+    {
+        Console.ForegroundColor = ConsoleColor.DarkBlue;
+        Console.WriteLine("=== МЕНЮ СОРТУВАННЯ ===");
+        Console.WriteLine("1. За назвою");
+        Console.WriteLine("2. За ціною (Bubble)");
+        Console.WriteLine("3. Назад");
+    
+        int choice = MainUserChoice(1, 3);
+        switch (choice)
+        {
+            case 1:
+                Pizzas.Sort((p1, p2) => string.Compare(p1.Name, p2.Name));
+                Console.WriteLine("Список відсортовано за назвою!");
+                break;
+            case 2:
+                BubbleSortByPrice();
+                Console.WriteLine("Список відсортовано за ціною!");
+                break;
+            case 3:
+                MainMenu();
+                return;
+        }
+        Console.ResetColor();
+        ShowMenu();
+    }
+
+    public static void BubbleSortByPrice()
+    {
+        int n = Pizzas.Count;
+        for (int i = 0; i < n - 1; i++)
+        {
+            for (int j = 0; j < n - i - 1; j++)
+            {
+                if (Pizzas[j].Value > Pizzas[j + 1].Value)
+                {
+                    Pizza s = Pizzas[j];
+                    Pizzas[j] = Pizzas[j + 1];
+                    Pizzas[j + 1] = s;
+                }
+            }
+        }
+    }
+    public static void AddProduct()
+    {
+        Console.Write("Введіть назву товару: ");
+        string name = Console.ReadLine()!;
+        double price;
+        while (true)
+        {
+            Console.Write("Введіть ціну: ");
+            if (double.TryParse(Console.ReadLine(), out price) && price >= 0)
+                break;
+            Console.WriteLine("Помилка! Введіть коректне число для ціни");
+        }
+        double weight;
+        while (true)
+        {
+            Console.Write("Введіть вагу (кг): ");
+            if (double.TryParse(Console.ReadLine(), out weight) && weight >= 0)
+                break;
+            Console.WriteLine("Помилка! Введіть коректне число для ваги");
+        }
+        int calories;
+        while (true)
+        {
+            Console.Write("Введіть калорії: ");
+            if (int.TryParse(Console.ReadLine(), out calories) && calories >= 0)
+                break;
+            Console.WriteLine("Помилка! Введіть коректне ціле число калорій");
+        }
+
+        Pizzas.Add(new Pizza(name, price, weight, calories));
+        Console.WriteLine($"Товар '{name}' успішно додано!");
+        Console.WriteLine("Натисніть будь-яку клавішу щоб повернутись у головне меню:");
+        Console.ReadKey();
+        MainMenu();
+    }
+
+    public static void RemoveProduct()
+    {
+        RenderMenu();
+        int id;
+        while (true)
+        {
+            Console.Write("Введіть ID товару для видалення: ");
+            if (int.TryParse(Console.ReadLine(), out id))
+                break;
+            Console.WriteLine("Помилка! Введено не ID");
+        }
+
+        if (id >= 1 && id <= Pizzas.Count)
+        {
+            Console.WriteLine($"Товар '{Pizzas[id - 1].Name}' видалено!");
+            Pizzas.RemoveAt(id - 1);
+        }
+        else
+        {
+            Console.WriteLine("Товар з таким ID не знайдено!");
+        }
+
+        Console.WriteLine("Натисніть будь-яку клавішу щоб повернутись у головне меню:");
+        Console.ReadKey();
+        MainMenu();
+    }
+    public static void Search()
+    {
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.Write("Введіть назву товару для пошуку: ");
+        string query = Console.ReadLine()!.ToLower();
+        bool found = false;
+        for (int i = 0; i < Pizzas.Count; i++)
+        {
+            if (Pizzas[i].Name.ToLower().Contains(query))
+            {
+                found = true;
+                Console.WriteLine(
+                    $"{i + 1}. {Pizzas[i].Name} | {Pizzas[i].Value} грн | {Pizzas[i].Calories} кал | {Pizzas[i].Weight} кг");
+            }
+        }
+        if (!found)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Товар не знайдено!");
+        }
+
+        Console.ResetColor();
+        Console.WriteLine("Натисніть будь-яку клавішу щоб повернутись у головне меню:");
+        Console.ReadKey();
+        MainMenu();
+    }
 
     public static void Login()
     {
@@ -35,6 +166,7 @@ class App
             Console.WriteLine($"Логін або пароль введено не правильно(залишилося {i-1} спроб)");
         }
     }
+
     public static void Statistic()
     {
         Console.ForegroundColor = ConsoleColor.Gray;
@@ -43,10 +175,10 @@ class App
         double total = 0;
         double min = double.MaxValue;
         double max = double.MinValue;
-        int count = Pizzas.Length;
+        int count = Pizzas.Count;
         int expensivecount = 0;
 
-        for (int i = 0; i < Pizzas.Length; i++)
+        for (int i = 0; i < Pizzas.Count; i++)
         {
             double price = Pizzas[i].Value;
 
@@ -75,6 +207,7 @@ class App
         Console.ReadKey();
         MainMenu();
     }
+
     public static int MainUserChoice(int min, int max)
     {
         int number;
@@ -132,6 +265,7 @@ class App
             }
         }
     }
+
     public static void MainMenu()
     {
         Console.ForegroundColor = ConsoleColor.DarkMagenta;
@@ -143,42 +277,51 @@ class App
         Console.WriteLine("2. Переглянути меню");
         Console.WriteLine("3. Перевірити замовлення");
         Console.WriteLine("4. Статистика");
-        Console.WriteLine("5. Вийти");
+        Console.WriteLine("5. Пошук");
+        Console.WriteLine("6. Додати товар");
+        Console.WriteLine("7. Видалити товар");
+        Console.WriteLine("8. Сортування");
+        Console.WriteLine("9. Вийти");
         Console.ResetColor();
         
-        int choice = MainUserChoice(1, 5);
+        int choice = MainUserChoice(1, 9);
         switch (choice)
         {
-            case 1:
-                Order();
-                break;
-            case 2:
-                ShowMenu();
-                break;
-            case 3:
-                OrderMenu();
-                break;
-            case 4:
-                Statistic();
-                break;
-            case 5:
-                break;
-                
+            case 1: Order(); break;
+            case 2: ShowMenu(); break;
+            case 3: OrderMenu(); break;
+            case 4: Statistic(); break;
+            case 5: Search(); break;
+            case 6: AddProduct(); break;
+            case 7: RemoveProduct(); break;
+            case 8: Sort(); break;
+            case 9: break;
         }
     }
 
     public static void ShowMenu()
     {
-        Console.ForegroundColor = ConsoleColor.DarkCyan;
-
-        for (int i = 0; i <= Pizzas.Length-1; i++)
-        {
-            Console.WriteLine($"{i+1}. {Pizzas[i].Name} | ({Pizzas[i].Value}) грн. | {Pizzas[i].Calories} калорій | Вага: {Pizzas[i].Weight} кг.");
-        }
+        RenderMenu();
         Console.WriteLine("Натисніть будь-яку клавішу щоб повернутись в головне меню");
         Console.ReadKey();
         Console.ResetColor();
         MainMenu();
+    }
+
+    public static void RenderMenu()
+    {
+        Console.ForegroundColor = ConsoleColor.DarkCyan;
+        Console.WriteLine("{0,-3} | {1,-25} | {2,-8} | {3,-10} | {4,-6}",  "№", "Назва піци", "Ціна", "Калорії", "Вага");
+        Console.WriteLine(new string('-', 65));
+        for (int i = 0; i < Pizzas.Count; i++)
+        {
+            Console.WriteLine("{0,-3} | {1,-25} | {2,-8} | {3,-10} | {4,-6}", i + 1,
+                Pizzas[i].Name,
+                Pizzas[i].Value + " грн",
+                Pizzas[i].Calories + " кал",
+                Pizzas[i].Weight + " кг"
+            );
+        }
     }
 
     public static void Order()
@@ -188,7 +331,7 @@ class App
         Console.WriteLine("=============НОВЕ ЗАМОВЛЕННЯ============");
         Console.WriteLine("========================================\n");
         double value = 0;
-        for (int i = 0; i <= Pizzas.Length-1; i++)
+        for (int i = 0; i < Pizzas.Count; i++)
         {
             value += OrderChoice(Pizzas[i].Name) * Pizzas[i].Value;
         }
@@ -267,7 +410,7 @@ class App
         }
         Console.ResetColor();
     }
-    
+
     public static void Main()
     {
         Login();
