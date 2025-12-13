@@ -1,21 +1,12 @@
 ﻿namespace Pizzeria;
 class Program
 {
-    public static string login = "viktor";
-    public static string password = "12345678";
-    public static List<Pizza> Pizzas = new List<Pizza>
-    {
-        new Pizza("Піца Маргарита", 230, 0.4, 920),
-        new Pizza("Піца Салямі", 180, 0.35, 980),
-        new Pizza("Піца з Шинкою", 170, 0.45, 1125),
-        new Pizza("Піца Чотири Сезони", 210, 0.5, 1300),
-        new Pizza("Піца Капрічоза", 190, 0.45, 1215)
-    };
-    
+    public static List<Pizza> Pizzas = new List<Pizza>{};
     static string _orders = "";
     static int _code;
     public static bool verify = false;
-
+    public static string currentDir = Directory.GetCurrentDirectory();
+    public static string[] products = File.ReadAllLines(currentDir + "/products.csv");
     public static void Sort()
     {
         Console.ForegroundColor = ConsoleColor.DarkBlue;
@@ -61,8 +52,23 @@ class Program
     }
     public static void AddProduct()
     {
-        Console.Write("Введіть назву товару: ");
-        string name = Console.ReadLine()!;
+        string name;
+        while (true)
+        {
+            Console.Write("Введіть назву товару: ");
+            name = Console.ReadLine()!;
+            if (name.Contains(",") || name.Contains(";"))
+            {
+                Console.WriteLine("Помилка! Символи коми та крапки з комою заборонені");
+                continue;
+            }
+            if (name.Length == 0)
+            {
+                Console.WriteLine("Помилка! Нічого не введено");
+                continue;
+            }
+                break;
+        }
         double price;
         while (true)
         {
@@ -88,6 +94,15 @@ class Program
             Console.WriteLine("Помилка! Введіть коректне ціле число калорій");
         }
 
+        if (File.Exists(currentDir + "/products.csv"))
+        {
+            int id = IdGenerator.GenerateNewId(currentDir + "/products.csv");
+            File.AppendAllText(currentDir + "/products.csv", "\n" + Convert.ToString(id)+",");
+            File.AppendAllText(currentDir + "/products.csv", name + ",");
+            File.AppendAllText(currentDir + "/products.csv", Convert.ToString(price)+",");
+            File.AppendAllText(currentDir + "/products.csv", Convert.ToString(weight)+",");
+            File.AppendAllText(currentDir + "/products.csv", Convert.ToString(calories));
+        }
         Pizzas.Add(new Pizza(name, price, weight, calories));
         Console.WriteLine($"Товар '{name}' успішно додано!");
         Console.WriteLine("Натисніть будь-яку клавішу щоб повернутись у головне меню:");
@@ -116,7 +131,16 @@ class Program
         {
             Console.WriteLine("Товар з таким ID не знайдено!");
         }
+        
+        List<string> lines = new List<string>();
+        lines.Add("Id,Name,Price,Weight,Calories");
 
+        for (int i = 0; i < Pizzas.Count; i++)
+        {
+            lines.Add($"{i + 1},{Pizzas[i].Name},{Pizzas[i].Value},{Pizzas[i].Weight},{Pizzas[i].Calories}");
+        }
+
+        File.WriteAllLines(currentDir + "/products.csv", lines);
         Console.WriteLine("Натисніть будь-яку клавішу щоб повернутись у головне меню:");
         Console.ReadKey();
         MainMenu();
@@ -127,13 +151,15 @@ class Program
         Console.Write("Введіть назву товару для пошуку: ");
         string query = Console.ReadLine()!.ToLower();
         bool found = false;
+        string[] lines = File.ReadAllLines(currentDir + "/products.csv");
+        
         for (int i = 0; i < Pizzas.Count; i++)
         {
+            string[] parts = lines[i+1].Split(',');
             if (Pizzas[i].Name.ToLower().Contains(query))
             {
                 found = true;
-                Console.WriteLine(
-                    $"{i + 1}. {Pizzas[i].Name} | {Pizzas[i].Value} грн | {Pizzas[i].Calories} кал | {Pizzas[i].Weight} кг");
+                Console.WriteLine($"{parts[0]}. {parts[1]} | {parts[2]} грн | {parts[3]} кг | {parts[4]} кал");
             }
         }
         if (!found)
@@ -148,23 +174,109 @@ class Program
         MainMenu();
     }
 
+    public static void Enter()
+    {
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("Створіть або увійдіть в акаунт:");
+        Console.WriteLine("1. Увійти в акаунт");
+        Console.WriteLine("2. Створити акаунт");
+        int choice = MainUserChoice(1, 2);
+        switch (choice)
+        {
+            case 1:
+                Login();
+                break;
+            case 2:
+                Registration();
+                break;
+        }
+        
+    }
     public static void Login()
     {
         Console.ForegroundColor = ConsoleColor.DarkCyan;
-        Console.WriteLine("Перед входом в систему увійдіть в акаунт!");
+        string[] lines = File.ReadAllLines(currentDir + "/users.csv");
         for (int i = 3; i > 0; i--)
         {
             Console.Write("Введіть логін: ");
             string inputlogin =  Console.ReadLine();
             Console.Write("Введіть пароль: ");
-            string inputpassword =  Console.ReadLine();
-            if (inputlogin == login && inputpassword == password)
+            string inputpassword = Console.ReadLine();
+            for (int j = 1; j < lines.Length; j++)
             {
-                verify = true;
+                string[] parts = lines[j].Split(',');
+                if (parts.Length < 3) 
+                    continue;
+                string login = parts[1];
+                string password = parts[2];
+                if (inputlogin == login && inputpassword == password)
+                {
+                    verify = true;
+                    break;
+                }
+            }
+            if (verify)
+            {
                 break;
             }
             Console.WriteLine($"Логін або пароль введено не правильно(залишилося {i-1} спроб)");
         }
+    }
+
+    public static void Registration()
+    {
+        string[] lines = File.ReadAllLines(currentDir + "/users.csv");
+        Console.ForegroundColor = ConsoleColor.DarkCyan;
+        string login;
+        string password;
+        while (true)
+        {
+            Console.WriteLine("Введіть логін для нового акаунтy:");
+            login = Console.ReadLine();
+            login = login.Replace(" ", "");
+            for (int i = 1; i < lines.Length; i++)
+            {
+                string[] parts = lines[i].Split(',');
+                if (parts[1] == login)
+                {
+                    Console.WriteLine("Такий логін вже існує!");
+                    break;
+                }
+            }
+            if (login.Length <= 3)
+            {
+                Console.WriteLine("Логін повинен бути мінімум 4 символа довжиною");
+                continue;
+            }
+            if (login.Contains(",") || login.Contains(";"))
+            {
+                Console.WriteLine("Логін не може містити коми або крапки з комою");
+                continue;
+            }
+            break;
+        }
+
+        while (true)
+        {
+            Console.WriteLine("Введіть пароль для нового акаунтy:");
+            password = Console.ReadLine();
+            if (password.Contains(",") || password.Contains(";"))
+            {
+                Console.WriteLine("Пароль не може містити коми або крапки з комою");
+                continue;
+            }
+
+            if (password.Length <= 3)
+            {
+                Console.WriteLine("Пароль повинен бути мінімум 4 символи довжиною");
+            }
+            break;
+        }
+        int id = IdGenerator.GenerateNewId(currentDir + "/users.csv");
+        File.AppendAllText(currentDir + "/users.csv", "\n" + Convert.ToString(id)+",");
+        File.AppendAllText(currentDir + "/users.csv", login + ",");
+        File.AppendAllText(currentDir + "/users.csv", password);
+        verify =  true;
     }
 
     public static void Statistic()
@@ -413,11 +525,32 @@ class Program
 
     public static void Main()
     {
-        Login();
-        if (!verify)
+        if (products.Length == 0 || products[0].Trim() != "Id,Name,Price,Weight,Calories")
         {
-            return;
+            Console.WriteLine("Некоректна шапка CSV файлу!");
         }
+        for (int i = 1; i < products.Length; i++)
+        {
+            string[] parts = products[i].Split(',');
+            if (string.IsNullOrWhiteSpace(products[i]))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Пустий рядок №{i} csv файлу");
+                Console.ResetColor();
+                continue;
+            }
+            string name = parts[1];
+            double price = double.Parse(parts[2]);
+            double weight = double.Parse(parts[3]);
+            int calories =  int.Parse(parts[4]);
+            Pizzas.Add(new Pizza(name, price, weight, calories));
+        }
+
+         Enter();
+         if (!verify)
+         {
+             return;
+         }
         Console.WriteLine("Підтверджено вхід в систему, натисніть будь-яку клавішу щоб продовжити:");
         Console.ResetColor();
         Console.ReadKey();
