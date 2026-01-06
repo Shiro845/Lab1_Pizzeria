@@ -1,4 +1,7 @@
-﻿namespace Pizzeria;
+﻿using System.Security.Cryptography;
+using System.Text;
+
+namespace Pizzeria;
 class Program
 {
     public static List<Pizza> Pizzas = new List<Pizza>{};
@@ -218,6 +221,12 @@ class Program
         }
         
     }
+    public static string HashPassword(string password)
+    {
+        using SHA256 sha256 = SHA256.Create();
+        byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+        return Convert.ToBase64String(bytes);
+    }
     public static void Login()
     {
         Console.ForegroundColor = ConsoleColor.DarkCyan;
@@ -228,6 +237,7 @@ class Program
             string inputlogin =  Console.ReadLine();
             Console.Write("Введіть пароль: ");
             string inputpassword = Console.ReadLine();
+            string inputPasswordHash = HashPassword(inputpassword);
             for (int j = 1; j < lines.Length; j++)
             {
                 string[] parts = lines[j].Split(',');
@@ -235,7 +245,7 @@ class Program
                     continue;
                 string login = parts[1];
                 string password = parts[2];
-                if (inputlogin == login && inputpassword == password)
+                if (inputlogin == login && inputPasswordHash == password)
                 {
                     verify = true;
                     break;
@@ -303,9 +313,10 @@ class Program
             break;
         }
         int id = IdGenerator.GenerateNewId(currentDir + "/users.csv");
+        string passwordHash = HashPassword(password);
         File.AppendAllText(currentDir + "/users.csv", "\n" + Convert.ToString(id)+",");
         File.AppendAllText(currentDir + "/users.csv", login + ",");
-        File.AppendAllText(currentDir + "/users.csv", password);
+        File.AppendAllText(currentDir + "/users.csv", passwordHash);
         verify =  true;
     }
 
