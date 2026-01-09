@@ -1,13 +1,14 @@
 // <copyright file="Entrance.cs" company="PizzeriaCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+// Copyright (c) PizzeriaCompany. All rights reserved.
 // </copyright>
 
 #pragma warning disable SA1401
 #pragma warning disable SA1200
+#pragma warning disable SA1309
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Pizzeria;
+namespace Pizzeria.Models;
 
 /// <summary>
 /// Система входу/створення акаунтів.
@@ -18,10 +19,14 @@ public class Entrance
     /// Перевірка наявності прав адміністратора.
     /// </summary>
     public static bool Root;
+
+    /// <summary>
+    /// Шлях до поточної директорії.
+    /// </summary>
     private static string _currentDir = Directory.GetCurrentDirectory();
 
     /// <summary>
-    /// В залежності від наявності прав адміністратора - зміна функціоналу головного меню.
+    /// Вибір меню в залежності від рівню доступу.
     /// </summary>
     public static void RootAccess()
     {
@@ -78,7 +83,6 @@ public class Entrance
     /// </summary>
     public static void Login()
     {
-        Root = false;
         string[] lines = File.ReadAllLines(_currentDir + "/users.csv");
 
         for (int i = 3; i > 0; i--)
@@ -100,14 +104,14 @@ public class Entrance
             for (int j = 1; j < lines.Length; j++)
             {
                 string[] parts = lines[j].Split(',');
-                if (parts.Length < 3)
+                if (parts.Length < 4)
                 {
                     continue;
                 }
 
                 if (inputlogin == parts[1] && inputPasswordHash == parts[2])
                 {
-                    Root = inputlogin == "admin";
+                    Root = parts[3] == "true";
                     return;
                 }
             }
@@ -184,7 +188,8 @@ public class Entrance
             string passwordHash = HashPassword(password);
             File.AppendAllText(_currentDir + "/users.csv", "\n" + Convert.ToString(id) + ",");
             File.AppendAllText(_currentDir + "/users.csv", login + ",");
-            File.AppendAllText(_currentDir + "/users.csv", passwordHash);
+            File.AppendAllText(_currentDir + "/users.csv", passwordHash + ",");
+            File.AppendAllText(_currentDir + "/users.csv", "false");
         }
     }
 }

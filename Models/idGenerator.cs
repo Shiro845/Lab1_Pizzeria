@@ -1,8 +1,8 @@
 // <copyright file="idGenerator.cs" company="PizzeriaCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+// Copyright (c) PizzeriaCompany. All rights reserved.
 // </copyright>
 
-namespace Pizzeria;
+namespace Pizzeria.Models;
 
 /// <summary>
 /// Генератор ID для csv файлів.

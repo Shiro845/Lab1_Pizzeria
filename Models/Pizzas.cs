@@ -1,8 +1,8 @@
 // <copyright file="Pizzas.cs" company="PizzeriaCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+// Copyright (c) PizzeriaCompany. All rights reserved.
 // </copyright>
 
-namespace Pizzeria;
+namespace Pizzeria.Models;
 
 /// <summary>
 /// Представляє піцу як товар у меню піцерії.
@@ -13,22 +13,22 @@ public struct Pizza
     /// <summary>
     /// Назва піци.
     /// </summary>
-    public string Name;
+    public readonly string Name;
 
     /// <summary>
     /// Ціна піци в гривнях.
     /// </summary>
-    public double Value;
+    public readonly double Value;
 
     /// <summary>
     /// Вага піци в грамах.
     /// </summary>
-    public double Weight;
+    public readonly double Weight;
 
     /// <summary>
-    /// Калорійність піци в ккал.
+    /// Калорійність піци в калоріях.
     /// </summary>
-    public int Calories;
+    public readonly int Calories;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Pizza"/> struct.
@@ -36,7 +36,7 @@ public struct Pizza
     /// <param name="name">Назва піци.</param>
     /// <param name="price">Ціна піци в гривнях.</param>
     /// <param name="weight">Вага піци в грамах.</param>
-    /// <param name="calories">Калорійність піци в ккал.</param>
+    /// <param name="calories">Калорійність піци в калоріях.</param>
     public Pizza(string name, double price, double weight, int calories)
     {
         this.Name = name;
