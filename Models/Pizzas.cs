@@ -1,6 +1,4 @@
-// <copyright file="Pizzas.cs" company="PizzeriaCompany">
 // Copyright (c) PizzeriaCompany. All rights reserved.
-// </copyright>
 
 namespace Pizzeria.Models;
 

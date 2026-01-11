@@ -1,10 +1,5 @@
-﻿// <copyright file="Program.cs" company="PizzeriaCompany">
-// Copyright (c) PizzeriaCompany. All rights reserved.
-// </copyright>
+﻿// Copyright (c) PizzeriaCompany. All rights reserved.
 
-#pragma warning disable SA1200
-#pragma warning disable SA1401
-#pragma warning restore SA0001
 using System.Globalization;
 using Pizzeria.Models;
 
@@ -23,7 +18,7 @@ public class Program
     /// <summary>
     /// Шлях до поточної директорії.
     /// </summary>
-    public static string CurrentDir = Directory.GetCurrentDirectory();
+    public static readonly string CurrentDir = Directory.GetCurrentDirectory();
 
     /// <summary>
     /// Сортування.

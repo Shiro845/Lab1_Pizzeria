@@ -1,6 +1,4 @@
-// <copyright file="Ordering.cs" company="PizzeriaCompany">
 // Copyright (c) PizzeriaCompany. All rights reserved.
-// </copyright>
 
 #pragma warning disable SA1309
 

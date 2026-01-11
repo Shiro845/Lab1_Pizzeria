@@ -27,3 +27,6 @@
 /home/shiro_845/RiderProjects/Lab2_Pizzeria/obj/Debug/net9.0/Pizzeria.pdb
 /home/shiro_845/RiderProjects/Lab2_Pizzeria/obj/Debug/net9.0/Pizzeria.genruntimeconfig.cache
 /home/shiro_845/RiderProjects/Lab2_Pizzeria/obj/Debug/net9.0/ref/Pizzeria.dll
+/home/shiro_845/RiderProjects/Lab2_Pizzeria/bin/Debug/net9.0/Spectre.Console.dll
+/home/shiro_845/RiderProjects/Lab2_Pizzeria/obj/Debug/net9.0/Pizzeria.csproj.AssemblyReference.cache
+/home/shiro_845/RiderProjects/Lab2_Pizzeria/obj/Debug/net9.0/Pizzeria.csproj.Up2Date

@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "y/kWEK0rR9g=",
+  "dgSpecHash": "zITrE8IKum4=",
   "success": true,
   "projectFilePath": "/home/shiro_845/RiderProjects/Lab2_Pizzeria/Pizzeria.csproj",
   "expectedPackageFiles": [
+    "/home/shiro_845/.nuget/packages/spectre.console/0.54.0/spectre.console.0.54.0.nupkg.sha512",
     "/home/shiro_845/.nuget/packages/stylecop.analyzers/1.1.118/stylecop.analyzers.1.1.118.nupkg.sha512",
     "/home/shiro_845/.nuget/packages/microsoft.netcore.app.ref/9.0.11/microsoft.netcore.app.ref.9.0.11.nupkg.sha512",
     "/home/shiro_845/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.11/microsoft.aspnetcore.app.ref.9.0.11.nupkg.sha512",

@@ -1,9 +1,6 @@
-// <copyright file="Entrance.cs" company="PizzeriaCompany">
 // Copyright (c) PizzeriaCompany. All rights reserved.
-// </copyright>
 
 #pragma warning disable SA1401
-#pragma warning disable SA1200
 #pragma warning disable SA1309
 using System.Security.Cryptography;
 using System.Text;

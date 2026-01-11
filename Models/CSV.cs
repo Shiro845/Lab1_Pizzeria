@@ -1,6 +1,4 @@
-// <copyright file="CSV.cs" company="PizzeriaCompany">
 // Copyright (c) PizzeriaCompany. All rights reserved.
-// </copyright>
 
 #pragma warning disable SA1309
 #pragma warning disable SA1011
