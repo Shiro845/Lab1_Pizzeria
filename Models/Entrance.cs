@@ -133,6 +133,7 @@ public class Entrance
         string? password;
         while (true)
         {
+            bool loginExists = false;
             Console.WriteLine("Введіть логін для нового акаунтy:");
             login = Console.ReadLine();
             login = login?.Replace(" ", string.Empty);
@@ -142,19 +143,24 @@ public class Entrance
                 if (parts[1] == login)
                 {
                     Console.WriteLine("Такий логін вже існує!");
-                    break;
+                    loginExists = true;
                 }
             }
 
             if (login != null && login.Length <= 3)
             {
                 Console.WriteLine("Логін повинен бути мінімум 4 символа довжиною");
-                continue;
+                loginExists = true;
             }
 
             if (login != null && (login.Contains(",") || login.Contains(";")))
             {
                 Console.WriteLine("Логін не може містити коми або крапки з комою");
+                loginExists = true;
+            }
+
+            if (loginExists)
+            {
                 continue;
             }
 
@@ -163,17 +169,24 @@ public class Entrance
 
         while (true)
         {
+            bool passwordExists = false;
             Console.WriteLine("Введіть пароль для нового акаунтy:");
             password = Console.ReadLine();
             if (password != null && (password.Contains(",") || password.Contains(";")))
             {
                 Console.WriteLine("Пароль не може містити коми або крапки з комою");
-                continue;
+                passwordExists = true;
             }
 
             if (password != null && password.Length <= 3)
             {
                 Console.WriteLine("Пароль повинен бути мінімум 4 символи довжиною");
+                passwordExists = true;
+            }
+
+            if (passwordExists)
+            {
+                continue;
             }
 
             break;

@@ -29,6 +29,7 @@ public class Csv
                 sw.WriteLine(header);
                 if (path == Program.CurrentDir + "/users.csv")
                 {
+                    // пароль на випадок якщо вам потрібно зайти від лиця адміна: 1488.
                     sw.WriteLine("1,admin,zyPcM9aroTWSpyGQVk7RiywNrilfaB7g/dxIYvASJc8=,true");
                 }
             }
