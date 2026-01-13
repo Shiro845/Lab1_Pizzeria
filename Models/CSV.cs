@@ -32,6 +32,14 @@ public class Csv
                     // пароль на випадок якщо вам потрібно зайти від лиця адміна: 1488.
                     sw.WriteLine("1,admin,zyPcM9aroTWSpyGQVk7RiywNrilfaB7g/dxIYvASJc8=,true");
                 }
+                if (path == Program.CurrentDir + "/products.csv")
+                {
+                    sw.WriteLine("1,Піца Чотири Сезони,210,500,1300\n" +
+                                 "2,Піца Салямі,250,400,1200\n" +
+                                 "3,Піца Маргарита,220,350,1000\n" +
+                                 "4,Піца Форчіта,190,500,1000\n" +
+                                 "5,Піца Монако,300,500,1300");
+                }
             }
 
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -47,27 +55,50 @@ public class Csv
     {
         EnsureFileExists(Program.CurrentDir + "/products.csv", "Id,Name,Price,Weight,Calories");
         EnsureFileExists(Program.CurrentDir + "/users.csv", "Id,Login,Password,RootAccess");
+
         _products = File.ReadAllLines(Program.CurrentDir + "/products.csv");
+
         if (_products.Length == 0 || _products[0].Trim() != "Id,Name,Price,Weight,Calories")
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Некоректна шапка CSV файлу!");
+            Console.ResetColor();
+            return;
         }
 
         for (int i = 1; i < _products.Length; i++)
         {
-            string[] parts = _products[i].Split(',');
-            if (string.IsNullOrWhiteSpace(_products[i]))
+            string line = _products[i];
+
+            if (string.IsNullOrWhiteSpace(line))
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Пустий рядок №{i} csv файлу");
+                continue;
+            }
+
+            string[] parts = line.Split(',');
+
+            if (parts.Length != 5)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine($"Рядок №{i} пропущено: некоректна кількість колонок.");
                 Console.ResetColor();
                 continue;
             }
 
             string name = parts[1];
-            double price = double.Parse(parts[2]);
-            double weight = double.Parse(parts[3]);
-            int calories = int.Parse(parts[4]);
+
+            bool priceOk = double.TryParse(parts[2], out double price);
+            bool weightOk = double.TryParse(parts[3], out double weight);
+            bool caloriesOk = int.TryParse(parts[4], out int calories);
+
+            if (!priceOk || !weightOk || !caloriesOk)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine($"Рядок №{i} пропущено: помилка даних.");
+                Console.ResetColor();
+                continue;
+            }
+
             Program.Pizzas.Add(new Pizza(name, price, weight, calories));
         }
     }

@@ -83,7 +83,6 @@ public class Ordering
         if (value >= 2000)
         {
             discount = 20;
-            Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.Yellow;
         }
 

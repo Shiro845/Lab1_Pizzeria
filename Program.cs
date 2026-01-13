@@ -1,6 +1,7 @@
 ﻿// Copyright (c) PizzeriaCompany. All rights reserved.
 
 using System.Globalization;
+using System.Text;
 using Pizzeria.Models;
 
 namespace Pizzeria;
@@ -429,6 +430,8 @@ public class Program
     /// </summary>
     public static void Main()
     {
+        Console.InputEncoding = Encoding.UTF8;
+        Console.OutputEncoding = Encoding.UTF8;
         Csv.SyncFromFile();
         Entrance.Enter();
         Console.ForegroundColor = ConsoleColor.DarkMagenta;
