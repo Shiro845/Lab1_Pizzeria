@@ -2,46 +2,12 @@
   "version": 3,
   "targets": {
     "net9.0": {
-      "Spectre.Console/0.54.0": {
-        "type": "package",
-        "compile": {
-          "lib/net9.0/Spectre.Console.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net9.0/Spectre.Console.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "StyleCop.Analyzers/1.1.118": {
         "type": "package"
       }
     }
   },
   "libraries": {
-    "Spectre.Console/0.54.0": {
-      "sha512": "StDXCFayfy0yB1xzUHT2tgEpV1/HFTiS4JgsAQS49EYTfMixSwwucaQs/bIOCwXjWwIQTMuxjUIxcB5XsJkFJA==",
-      "type": "package",
-      "path": "spectre.console/0.54.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "lib/net10.0/Spectre.Console.dll",
-        "lib/net10.0/Spectre.Console.xml",
-        "lib/net8.0/Spectre.Console.dll",
-        "lib/net8.0/Spectre.Console.xml",
-        "lib/net9.0/Spectre.Console.dll",
-        "lib/net9.0/Spectre.Console.xml",
-        "lib/netstandard2.0/Spectre.Console.dll",
-        "lib/netstandard2.0/Spectre.Console.xml",
-        "logo.png",
-        "spectre.console.0.54.0.nupkg.sha512",
-        "spectre.console.nuspec"
-      ]
-    },
     "StyleCop.Analyzers/1.1.118": {
       "sha512": "Onx6ovGSqXSK07n/0eM3ZusiNdB6cIlJdabQhWGgJp3Vooy9AaLS/tigeybOJAobqbtggTamoWndz72JscZBvw==",
       "type": "package",
@@ -70,7 +36,6 @@
   },
   "projectFileDependencyGroups": {
     "net9.0": [
-      "Spectre.Console >= 0.54.0",
       "StyleCop.Analyzers >= 1.1.118"
     ]
   },
@@ -80,11 +45,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/shiro_845/RiderProjects/Lab2_Pizzeria/Pizzeria.csproj",
+      "projectUniqueName": "/home/shiro_845/RiderProjects/Praktika/Pizzeria.csproj",
       "projectName": "Pizzeria",
-      "projectPath": "/home/shiro_845/RiderProjects/Lab2_Pizzeria/Pizzeria.csproj",
+      "projectPath": "/home/shiro_845/RiderProjects/Praktika/Pizzeria.csproj",
       "packagesPath": "/home/shiro_845/.nuget/packages/",
-      "outputPath": "/home/shiro_845/RiderProjects/Lab2_Pizzeria/obj/",
+      "outputPath": "/home/shiro_845/RiderProjects/Praktika/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/shiro_845/.nuget/NuGet/NuGet.Config"
@@ -117,10 +82,6 @@
       "net9.0": {
         "targetAlias": "net9.0",
         "dependencies": {
-          "Spectre.Console": {
-            "target": "Package",
-            "version": "[0.54.0, )"
-          },
           "StyleCop.Analyzers": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",

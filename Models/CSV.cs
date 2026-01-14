@@ -27,13 +27,13 @@ public class Csv
             using (StreamWriter sw = new StreamWriter(path))
             {
                 sw.WriteLine(header);
-                if (path == Program.CurrentDir + "/users.csv")
+                if (path == Program.CurrentDir + "/Data/users.csv")
                 {
                     // пароль на випадок якщо вам потрібно зайти від лиця адміна: 1488.
                     sw.WriteLine("1,admin,zyPcM9aroTWSpyGQVk7RiywNrilfaB7g/dxIYvASJc8=,true");
                 }
 
-                if (path == Program.CurrentDir + "/products.csv")
+                if (path == Program.CurrentDir + "/Data/products.csv")
                 {
                     sw.WriteLine("1,Піца Чотири Сезони,210,500,1300\n" +
                                  "2,Піца Салямі,250,400,1200\n" +
@@ -54,10 +54,10 @@ public class Csv
     /// </summary>
     public static void SyncFromFile()
     {
-        EnsureFileExists(Program.CurrentDir + "/products.csv", "Id,Name,Price,Weight,Calories");
-        EnsureFileExists(Program.CurrentDir + "/users.csv", "Id,Login,Password,RootAccess");
+        EnsureFileExists(Program.CurrentDir + "/Data/products.csv", "Id,Name,Price,Weight,Calories");
+        EnsureFileExists(Program.CurrentDir + "/Data/users.csv", "Id,Login,Password,RootAccess");
 
-        _products = File.ReadAllLines(Program.CurrentDir + "/products.csv");
+        _products = File.ReadAllLines(Program.CurrentDir + "/Data/products.csv");
 
         if (_products.Length == 0 || _products[0].Trim() != "Id,Name,Price,Weight,Calories")
         {

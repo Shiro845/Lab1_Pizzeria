@@ -80,7 +80,7 @@ public class Entrance
     /// </summary>
     public static void Login()
     {
-        string[] lines = File.ReadAllLines(_currentDir + "/users.csv");
+        string[] lines = File.ReadAllLines(_currentDir + "/Data/users.csv");
 
         for (int i = 3; i > 0; i--)
         {
@@ -127,7 +127,7 @@ public class Entrance
     /// </summary>
     public static void Registration()
     {
-        string[] lines = File.ReadAllLines(_currentDir + "/users.csv");
+        string[] lines = File.ReadAllLines(_currentDir + "/Data/users.csv");
         Console.ForegroundColor = ConsoleColor.DarkCyan;
         string? login;
         string? password;
@@ -192,14 +192,14 @@ public class Entrance
             break;
         }
 
-        int id = IdGenerator.GenerateNewId(_currentDir + "/users.csv");
+        int id = IdGenerator.GenerateNewId(_currentDir + "/Data/users.csv");
         if (password != null)
         {
             string passwordHash = HashPassword(password);
-            File.AppendAllText(_currentDir + "/users.csv", "\n" + Convert.ToString(id) + ",");
-            File.AppendAllText(_currentDir + "/users.csv", login + ",");
-            File.AppendAllText(_currentDir + "/users.csv", passwordHash + ",");
-            File.AppendAllText(_currentDir + "/users.csv", "false");
+            File.AppendAllText(_currentDir + "/Data/users.csv", "\n" + Convert.ToString(id) + ",");
+            File.AppendAllText(_currentDir + "/Data/users.csv", login + ",");
+            File.AppendAllText(_currentDir + "/Data/users.csv", passwordHash + ",");
+            File.AppendAllText(_currentDir + "/Data/users.csv", "false");
         }
     }
 }

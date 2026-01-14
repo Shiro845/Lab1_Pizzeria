@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/shiro_845/RiderProjects/Lab2_Pizzeria/Pizzeria.csproj": {}
+    "/home/shiro_845/RiderProjects/Praktika/Pizzeria.csproj": {}
   },
   "projects": {
-    "/home/shiro_845/RiderProjects/Lab2_Pizzeria/Pizzeria.csproj": {
+    "/home/shiro_845/RiderProjects/Praktika/Pizzeria.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/shiro_845/RiderProjects/Lab2_Pizzeria/Pizzeria.csproj",
+        "projectUniqueName": "/home/shiro_845/RiderProjects/Praktika/Pizzeria.csproj",
         "projectName": "Pizzeria",
-        "projectPath": "/home/shiro_845/RiderProjects/Lab2_Pizzeria/Pizzeria.csproj",
+        "projectPath": "/home/shiro_845/RiderProjects/Praktika/Pizzeria.csproj",
         "packagesPath": "/home/shiro_845/.nuget/packages/",
-        "outputPath": "/home/shiro_845/RiderProjects/Lab2_Pizzeria/obj/",
+        "outputPath": "/home/shiro_845/RiderProjects/Praktika/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/shiro_845/.nuget/NuGet/NuGet.Config"
@@ -44,10 +44,6 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
-            "Spectre.Console": {
-              "target": "Package",
-              "version": "[0.54.0, )"
-            },
             "StyleCop.Analyzers": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",

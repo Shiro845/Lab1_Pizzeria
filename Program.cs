@@ -142,14 +142,14 @@ public class Program
             Console.WriteLine("Помилка! Введіть коректне ціле число калорій");
         }
 
-        if (File.Exists(CurrentDir + "/products.csv"))
+        if (File.Exists(CurrentDir + "/Data/products.csv"))
         {
-            int id = IdGenerator.GenerateNewId(CurrentDir + "/products.csv");
-            File.AppendAllText(CurrentDir + "/products.csv", "\n" + Convert.ToString(id) + ",");
-            File.AppendAllText(CurrentDir + "/products.csv", name + ",");
-            File.AppendAllText(CurrentDir + "/products.csv", Convert.ToString(price, CultureInfo.InvariantCulture) + ",");
-            File.AppendAllText(CurrentDir + "/products.csv", Convert.ToString(weight, CultureInfo.InvariantCulture) + ",");
-            File.AppendAllText(CurrentDir + "/products.csv", Convert.ToString(calories));
+            int id = IdGenerator.GenerateNewId(CurrentDir + "/Data/products.csv");
+            File.AppendAllText(CurrentDir + "/Data/products.csv", "\n" + Convert.ToString(id) + ",");
+            File.AppendAllText(CurrentDir + "/Data/products.csv", name + ",");
+            File.AppendAllText(CurrentDir + "/Data/products.csv", Convert.ToString(price, CultureInfo.InvariantCulture) + ",");
+            File.AppendAllText(CurrentDir + "/Data/products.csv", Convert.ToString(weight, CultureInfo.InvariantCulture) + ",");
+            File.AppendAllText(CurrentDir + "/Data/products.csv", Convert.ToString(calories));
         }
 
         Pizzas.Add(new Pizza(name, price, weight, calories));
@@ -195,7 +195,7 @@ public class Program
             lines.Add($"{i + 1},{Pizzas[i].Name},{Pizzas[i].Value},{Pizzas[i].Weight},{Pizzas[i].Calories}");
         }
 
-        File.WriteAllLines(CurrentDir + "/products.csv", lines);
+        File.WriteAllLines(CurrentDir + "/Data/products.csv", lines);
         Console.WriteLine("Натисніть будь-яку клавішу щоб повернутись у головне меню:");
         Console.ReadKey();
         RootMainMenu();
@@ -211,7 +211,7 @@ public class Program
         Console.Write("Введіть назву товару для пошуку: ");
         string query = Console.ReadLine() !.ToLower();
         bool found = false;
-        string[] lines = File.ReadAllLines(CurrentDir + "/products.csv");
+        string[] lines = File.ReadAllLines(CurrentDir + "/Data/products.csv");
 
         for (int i = 0; i < Pizzas.Count; i++)
         {

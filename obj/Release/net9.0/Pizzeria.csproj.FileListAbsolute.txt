@@ -1,0 +1,15 @@
+/home/shiro_845/RiderProjects/Praktika/bin/Release/net9.0/Pizzeria
+/home/shiro_845/RiderProjects/Praktika/bin/Release/net9.0/Pizzeria.deps.json
+/home/shiro_845/RiderProjects/Praktika/bin/Release/net9.0/Pizzeria.runtimeconfig.json
+/home/shiro_845/RiderProjects/Praktika/bin/Release/net9.0/Pizzeria.dll
+/home/shiro_845/RiderProjects/Praktika/bin/Release/net9.0/Pizzeria.pdb
+/home/shiro_845/RiderProjects/Praktika/obj/Release/net9.0/Pizzeria.GeneratedMSBuildEditorConfig.editorconfig
+/home/shiro_845/RiderProjects/Praktika/obj/Release/net9.0/Pizzeria.AssemblyInfoInputs.cache
+/home/shiro_845/RiderProjects/Praktika/obj/Release/net9.0/Pizzeria.AssemblyInfo.cs
+/home/shiro_845/RiderProjects/Praktika/obj/Release/net9.0/Pizzeria.csproj.CoreCompileInputs.cache
+/home/shiro_845/RiderProjects/Praktika/obj/Release/net9.0/Pizzeria.sourcelink.json
+/home/shiro_845/RiderProjects/Praktika/obj/Release/net9.0/Pizzeria.dll
+/home/shiro_845/RiderProjects/Praktika/obj/Release/net9.0/refint/Pizzeria.dll
+/home/shiro_845/RiderProjects/Praktika/obj/Release/net9.0/Pizzeria.pdb
+/home/shiro_845/RiderProjects/Praktika/obj/Release/net9.0/Pizzeria.genruntimeconfig.cache
+/home/shiro_845/RiderProjects/Praktika/obj/Release/net9.0/ref/Pizzeria.dll
