@@ -58,6 +58,10 @@ public class Program
 
         Console.ResetColor();
         RenderMenu();
+        Console.WriteLine("Натисніть будь-яку клавішу щоб повернутись в головне меню");
+        Console.ReadKey();
+        Console.ResetColor();
+        Entrance.RootAccess();
     }
 
     /// <summary>
@@ -355,7 +359,13 @@ public class Program
         switch (choice)
         {
             case 1: Ordering.Order(); break;
-            case 2: RenderMenu(); break;
+            case 2:
+                RenderMenu();
+                Console.WriteLine("Натисніть будь-яку клавішу щоб повернутись в головне меню");
+                Console.ReadKey();
+                Console.ResetColor();
+                Entrance.RootAccess();
+                break;
             case 3: Ordering.OrderMenu(); break;
             case 4: Statistic(); break;
             case 5: Search(); break;
@@ -390,7 +400,13 @@ public class Program
         switch (choice)
         {
             case 1: Ordering.Order(); break;
-            case 2: RenderMenu(); break;
+            case 2:
+                RenderMenu();
+                Console.WriteLine("Натисніть будь-яку клавішу щоб повернутись в головне меню");
+                Console.ReadKey();
+                Console.ResetColor();
+                Entrance.RootAccess();
+                break;
             case 3: Ordering.OrderMenu(); break;
             case 4: Statistic(); break;
             case 5: Search(); break;
@@ -418,11 +434,6 @@ public class Program
             Pizzas[i].Calories + " кал",
             Pizzas[i].Weight + " грам");
         }
-
-        Console.WriteLine("Натисніть будь-яку клавішу щоб повернутись в головне меню");
-        Console.ReadKey();
-        Console.ResetColor();
-        Entrance.RootAccess();
     }
 
     /// <summary>
